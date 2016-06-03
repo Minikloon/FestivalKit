@@ -25,6 +25,7 @@ namespace FestivalKit
 			Callback(e);
 		}
 
+		// https://codeblog.jonskeet.uk/2008/08/09/making-reflection-fly-and-exploring-delegates/
 		protected Action<object> CreateDelegate<T>(T instance, MethodInfo method) where T : class
 		{
 			var genericHelper = typeof(ListenerMethod).GetMethod("DelegateHelper", BindingFlags.Static | BindingFlags.NonPublic);
