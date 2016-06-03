@@ -4,18 +4,18 @@ namespace FestivalKit
 {
 	public class EventPipe
 	{
-		protected SortedList<EventOrder, List<ListenerMethod>> Callbacks { get; } = new SortedList<EventOrder, List<ListenerMethod>>();
+		protected SortedList<EventOrder, List<ListenerMethod>> CallbacksByOrder { get; } = new SortedList<EventOrder, List<ListenerMethod>>();
 
 		public void Add(ListenerMethod listenerMethod)
 		{
 			var order = listenerMethod.Order;
-			lock (Callbacks)
+			lock (CallbacksByOrder)
 			{
 				List<ListenerMethod> methods;
-				if (!Callbacks.TryGetValue(order, out methods))
+				if (!CallbacksByOrder.TryGetValue(order, out methods))
 				{
 					methods = new List<ListenerMethod>(5);
-					Callbacks[order] = methods;
+					CallbacksByOrder[order] = methods;
 				}
 
 				methods.Add(listenerMethod);
@@ -24,9 +24,9 @@ namespace FestivalKit
 
 		public void Remove(ListenerMethod listenerMethod)
 		{
-			lock (Callbacks)
+			lock (CallbacksByOrder)
 			{
-				foreach (var order in Callbacks.Values)
+				foreach (var order in CallbacksByOrder.Values)
 				{
 					order.RemoveAll(m =>
 						m.CallbackMethod.Equals(listenerMethod.CallbackMethod) &&
@@ -37,16 +37,19 @@ namespace FestivalKit
 		
 		public void Run(IEvent e)
 		{
-			lock (Callbacks)
+			LinkedList<ListenerMethod> toInvoke = new LinkedList<ListenerMethod>();
+			lock (CallbacksByOrder)
 			{
-				var callbacks = Callbacks.Values;
+				var callbacks = CallbacksByOrder.Values;
 				for (int j = 0; j < callbacks.Count; ++j)
 				{
 					var methods = callbacks[j];
 					for (int i = 0; i < methods.Count; ++i)
-						methods[i].Invoke(e);
+						toInvoke.AddLast(methods[i]);
 				}
 			}
+			foreach(var method in toInvoke)
+				method.Invoke(e);
 		}
 	}
 }
