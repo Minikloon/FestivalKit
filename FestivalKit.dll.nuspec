@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FestivalKit.dll</id>
+    <version>$version$</version>
+    <authors>Minikloon</authors>
+    <owners>Minikloon</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Minikloon/FestivalKit/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Minikloon/FestivalKit</projectUrl>
+    <iconUrl>https://camo.githubusercontent.com/519f610e1fb59de57d6e418fa787414b886b26b1/687474703a2f2f692e696d6775722e636f6d2f676449443537362e706e67</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Small C# eventing library familiar to Bukkit developers</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>Bukkit Event Events Eventing</tags>
+  </metadata>
+</package>
