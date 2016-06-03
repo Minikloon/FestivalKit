@@ -29,7 +29,7 @@ public class SomethingListener : IListener
 ~~~~
 
 Finally use a dispatcher to register your listener and dispatch your events.
-You usually only need a single dispatcher in your application.
+*You usually only need a single dispatcher in your application.*
 
 ~~~~
 var dispatcher = new EventDispatcher();
@@ -41,7 +41,8 @@ dispatcher.Dispatch(new SomethingEvent() {Text = "Hello World!"});
 
 # EventOrder
 
-You can specify an order to a listener method. The order is between 1 and 7, the default is 3. The highest order is executed last.
+You can specify an order to a listener method. 
+The order is between 1 and 7, the default is 3. The highest order is executed last.
 
 ~~~~
 public class SomethingListener : IListener
