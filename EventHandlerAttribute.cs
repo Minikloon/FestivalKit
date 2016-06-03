@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Festival
+namespace FestivalKit
 {
 	[AttributeUsage(AttributeTargets.Method)]
 	public class EventHandlerAttribute : Attribute

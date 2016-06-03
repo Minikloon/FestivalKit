@@ -1,4 +1,4 @@
-﻿namespace Festival
+﻿namespace FestivalKit
 {
 	public enum EventOrder
 	{

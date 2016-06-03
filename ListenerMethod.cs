@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Festival
+namespace FestivalKit
 {
 	public class ListenerMethod
 	{

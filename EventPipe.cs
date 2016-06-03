@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Festival
+namespace FestivalKit
 {
 	public class EventPipe
 	{
