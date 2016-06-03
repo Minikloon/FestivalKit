@@ -5,6 +5,13 @@ FestivalKit is a small and simple C# eventing library aimed to be familiar to Bu
 This can also be useful in a general purpose plugin architecture where unrelated components need to step on each other in a somewhat orderly fashion.
 The library is available under [MIT License](https://tldrlegal.com/license/mit-license).
 
+# Install
+
+FestivalKit is available on NuGet.
+~~~~
+Install-Package FestivalKit.dll
+~~~~
+
 # Usage
 
 First let's declare an event type.
@@ -16,6 +23,7 @@ public class SomethingEvent : IEvent
 ~~~~
 
 Then declare a listener for that type.
+
 A Listener class can have multiple EventHandler methods.
 ~~~~
 public class SomethingListener : IListener
@@ -29,6 +37,7 @@ public class SomethingListener : IListener
 ~~~~
 
 Finally use a dispatcher to register your listener and dispatch your events.
+
 *You usually only need a single dispatcher in your application.*
 
 ~~~~
@@ -66,8 +75,7 @@ public class SomethingListener : IListener
 
 
 Some events within your application may be cancellable by its listeners. For example if an event is fired before broadcasting a chat 
-message in an IRC server, a word filter listener might want to cancel it. In turn an user whitelist listener might permit the message 
-because it is from an admin user and un-cancel it.
+message in an IRC server, a word filter listener might want to cancel it. In turn an user whitelist listener might permit the message if it is from an admin user and un-cancel it.
 
 
 To use this facility, simply derive your event class from CancellableEvent.
@@ -93,7 +101,7 @@ public class WhitelistListener : IListener
 }
 ~~~~
 
-You can also use EventDispatcher's Dispatch overload for Cancellable to form this nifty pattern.
+You can also use EventDispatcher's Dispatch overload for CancellableEvent with this nifty pattern.
 ~~~~
 var e = new ChatEvent() {Username = "Minikloon", Message = "Yo!"};
 if (dispatcher.Dispatch(e))
